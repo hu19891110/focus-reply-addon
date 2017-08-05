@@ -26,4 +26,22 @@ class Hook
         return ;
     }
 
+    /**
+     * 注册Wefee二级菜单
+     * @return void
+     */
+    public function appBegin()
+    {
+        $menus = config('WEFEE_SECOND_MENUS');
+        $menus = $menus?:[];
+        $our = [
+            [
+                'title' => '关注回复',
+                'href' => url('addons/addons/config', ['addons_sign' => 'FocusReply']),
+            ]
+        ];
+        $menus = array_merge($menus, $our);
+        config(['WEFEE_SECOND_MENUS' => $menus]);
+    }
+
 }
